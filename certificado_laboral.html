@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificado Laboral — Cerrajería Barranquilla Elite</title>
+<style>
+  :root {
+    --paper: #faf9f6; --sheet: #ffffff; --ink: #1c2128; --muted: #6b7280;
+    --line: #dcdad3; --accent: #35507a; --accent-soft: #e8edf3; --accent-ink: #1f3554;
+    --shadow: rgba(28, 33, 40, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #14161a; --sheet: #1c1f25; --ink: #e8e6e1; --muted: #9aa0a8; --line: #33373f; --accent: #7d9bc9; --accent-soft: #232c3a; --accent-ink: #cfdcee; --shadow: rgba(0,0,0,0.5); }
+  }
+  :root[data-theme="dark"] { --paper: #14161a; --sheet: #1c1f25; --ink: #e8e6e1; --muted: #9aa0a8; --line: #33373f; --accent: #7d9bc9; --accent-soft: #232c3a; --accent-ink: #cfdcee; --shadow: rgba(0,0,0,0.5); }
+  :root[data-theme="light"] { --paper: #faf9f6; --sheet: #ffffff; --ink: #1c2128; --muted: #6b7280; --line: #dcdad3; --accent: #35507a; --accent-soft: #e8edf3; --accent-ink: #1f3554; --shadow: rgba(28, 33, 40, 0.14); }
+
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: -apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif; padding: 32px 16px 64px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+  .toolbar { width: 100%; max-width: 720px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .toolbar h1 { font-size: 15px; font-weight: 600; margin: 0; }
+  .toolbar p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+  button { font-family: inherit; font-size: 13px; border-radius: 6px; padding: 8px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.primary { background: var(--accent); color: var(--sheet); border-color: var(--accent); }
+  button.primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+
+  .sheet { width: 100%; max-width: 720px; background: var(--sheet); box-shadow: 0 8px 28px var(--shadow); border-radius: 4px; padding: 52px 56px 46px; }
+  .brand { text-align: center; }
+  .brand h2 { font-family: Georgia,"Iowan Old Style","Times New Roman",serif; font-size: 21px; font-weight: 700; margin: 0; }
+  .brand .sub { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .brand .contact { font-size: 11.5px; color: var(--muted); margin: 3px 0 0; }
+  .rule { height: 1px; background: var(--line); margin: 22px 0 26px; }
+
+  .dateline { text-align: right; font-size: 13.5px; margin-bottom: 28px; border-radius: 3px; padding: 2px; }
+  .dateline:focus { outline: none; background: var(--accent-soft); }
+
+  .doc-title { text-align: center; font-family: Georgia,"Iowan Old Style","Times New Roman",serif; font-size: 17px; font-weight: 700; letter-spacing: 0.05em; color: var(--accent-ink); margin: 0 0 24px; }
+
+  .salutation { font-size: 14.5px; margin-bottom: 16px; }
+
+  .body-text { font-size: 14.5px; line-height: 1.75; text-align: justify; margin-bottom: 16px; border-radius: 4px; padding: 4px; }
+  .body-text:focus { outline: none; background: var(--accent-soft); }
+  .body-text strong { color: var(--accent-ink); }
+
+  .signature { margin-top: 52px; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .signature .line { width: 240px; border-top: 1px solid var(--ink); padding-top: 6px; font-size: 13.5px; font-weight: 600; }
+  .signature .role { font-size: 12px; color: var(--muted); }
+
+  @media print {
+    body { padding: 0; background: #fff; }
+    .toolbar, .no-print { display: none !important; }
+    .sheet { box-shadow: none; max-width: 100%; padding: 8mm 10mm; }
+    :root { --sheet: #ffffff; --ink: #000000; --muted: #444; --line: #ccc; }
+  }
+  @media (max-width: 640px) { .sheet { padding: 34px 24px 30px; } }
+
+  /* Corrección: evita que el texto largo se salga del recuadro al escribir */
+  [contenteditable="true"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .meta, .meta.two, .field, .letras-box, td, th, table, .conditions li {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div>
+    <h1>Vista previa — Certificado Laboral</h1>
+    <p>Edita el texto directamente. Los datos resaltados son los que debes reemplazar por cada empleado.</p>
+  </div>
+  <button class="primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+</div>
+
+<div class="sheet">
+  <div class="brand">
+    <h2>CERRAJERÍA BARRANQUILLA ELITE SAS</h2>
+    <p class="sub">NIT 901.560.454-0 &nbsp;·&nbsp; Representante legal: Carlos Andrés Medina Ortiz</p>
+    <p class="contact">Carrera 46 #59-39, Barranquilla &nbsp;·&nbsp; Tel. 300 708 1927 &nbsp;·&nbsp; cerrajeriabarranquillaelite@gmail.com</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="dateline" contenteditable="true">Barranquilla, 11 de agosto de 2026</div>
+
+  <p class="doc-title">CERTIFICADO LABORAL</p>
+
+  <p class="salutation">A quien pueda interesar:</p>
+
+  <p class="body-text" contenteditable="true"><strong>CERRAJERÍA BARRANQUILLA ELITE SAS</strong>, identificada con NIT 901.560.454-0, certifica que el(la) señor(a) <strong>Andrés Felipe Rojas Pacheco</strong>, identificado(a) con C.C. 1.045.678.910 de Barranquilla, labora / laboró en nuestra empresa desempeñando el cargo de <strong>Técnico Cerrajero</strong>, bajo contrato a <strong>término indefinido</strong>, desde el <strong>3 de febrero de 2023</strong> hasta la fecha.</p>
+
+  <p class="body-text" contenteditable="true">El(la) empleado(a) devenga(ba) un salario mensual de <strong>$ 1.800.000</strong>.</p>
+
+  <p class="body-text" contenteditable="true">El presente certificado se expide a solicitud del interesado, a los fines que estime convenientes.</p>
+
+  <p class="salutation">Cordialmente,</p>
+
+  <div class="signature">
+    <div class="line">Carlos Andrés Medina Ortiz</div>
+    <div class="role">Representante Legal</div>
+    <div class="role">CERRAJERÍA BARRANQUILLA ELITE SAS</div>
+  </div>
+</div>
+</body>
+</html>

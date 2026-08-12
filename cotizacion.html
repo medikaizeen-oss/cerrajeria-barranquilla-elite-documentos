@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotización — Cerrajería Barranquilla Elite</title>
+<style>
+  :root {
+    --paper: #faf9f6; --sheet: #ffffff; --ink: #1c2128; --muted: #6b7280;
+    --line: #dcdad3; --accent: #35507a; --accent-soft: #e8edf3; --accent-ink: #1f3554;
+    --danger: #a13a3a; --shadow: rgba(28, 33, 40, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #14161a; --sheet: #1c1f25; --ink: #e8e6e1; --muted: #9aa0a8; --line: #33373f; --accent: #7d9bc9; --accent-soft: #232c3a; --accent-ink: #cfdcee; --danger: #d98888; --shadow: rgba(0,0,0,0.5); }
+  }
+  :root[data-theme="dark"] { --paper: #14161a; --sheet: #1c1f25; --ink: #e8e6e1; --muted: #9aa0a8; --line: #33373f; --accent: #7d9bc9; --accent-soft: #232c3a; --accent-ink: #cfdcee; --danger: #d98888; --shadow: rgba(0,0,0,0.5); }
+  :root[data-theme="light"] { --paper: #faf9f6; --sheet: #ffffff; --ink: #1c2128; --muted: #6b7280; --line: #dcdad3; --accent: #35507a; --accent-soft: #e8edf3; --accent-ink: #1f3554; --danger: #a13a3a; --shadow: rgba(28, 33, 40, 0.14); }
+
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: -apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif; padding: 32px 16px 64px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+  .toolbar { width: 100%; max-width: 780px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .toolbar h1 { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: 0.01em; }
+  .toolbar p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+  .toolbar-actions { display: flex; gap: 8px; }
+
+  button { font-family: inherit; font-size: 13px; border-radius: 6px; padding: 8px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); transition: background .15s, border-color .15s; }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.primary { background: var(--accent); color: var(--sheet); border-color: var(--accent); }
+  button.primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  button.ghost { border: none; background: transparent; color: var(--muted); padding: 4px 8px; font-size: 12px; }
+  button.ghost:hover { color: var(--danger); }
+
+  .sheet { width: 100%; max-width: 780px; background: var(--sheet); box-shadow: 0 8px 28px var(--shadow); border-radius: 4px; padding: 48px 52px 40px; }
+
+  .brand { text-align: center; }
+  .brand h2 { font-family: Georgia,"Iowan Old Style","Times New Roman",serif; font-size: 22px; font-weight: 700; letter-spacing: 0.015em; margin: 0; }
+  .brand .sub { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .brand .contact { font-size: 11.5px; color: var(--muted); margin: 3px 0 0; }
+
+  .rule { height: 1px; background: var(--line); margin: 24px 0 22px; }
+
+  .doc-title { text-align: center; font-family: Georgia,"Iowan Old Style","Times New Roman",serif; font-size: 18px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent-ink); margin: 0 0 22px; }
+
+  .meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px 20px; margin-bottom: 10px; }
+  .meta.two { grid-template-columns: 1fr 1fr; margin-bottom: 26px; }
+  .field label { display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
+  .field .val { font-size: 14.5px; padding: 3px 2px; border-radius: 3px; min-height: 20px; }
+  .field .val:focus { outline: none; background: var(--accent-soft); }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+  thead th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sheet); background: var(--accent); padding: 8px 10px; }
+  thead th.num { text-align: right; }
+  thead th.center { text-align: center; }
+  thead th:first-child { border-radius: 3px 0 0 3px; }
+  thead th:last-child { border-radius: 0 3px 3px 0; }
+  tbody td { padding: 9px 10px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: middle; }
+  tbody td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody td.center { text-align: center; }
+  tbody td .concepto, tbody td .cant { min-height: 18px; border-radius: 3px; padding: 2px 3px; }
+  tbody td .concepto:focus, tbody td .cant:focus { outline: none; background: var(--accent-soft); }
+  .valor-input, .unit-input { width: 90px; text-align: right; font-family: inherit; font-size: 14px; font-variant-numeric: tabular-nums; border: none; background: transparent; color: var(--ink); padding: 2px 3px; border-radius: 3px; }
+  .valor-input:focus, .unit-input:focus { outline: none; background: var(--accent-soft); }
+  .row-del { width: 28px; text-align: center; }
+  .add-row { margin: 10px 0 20px; }
+
+  .total-row td { border-bottom: none; border-top: 2px solid var(--ink); font-weight: 700; font-size: 15px; padding-top: 12px; }
+  .total-row td.num { color: var(--accent-ink); }
+
+  .conditions { margin-top: 26px; }
+  .conditions h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 8px; }
+  .conditions ul { margin: 0; padding-left: 18px; }
+  .conditions li { font-size: 13px; color: var(--ink); margin-bottom: 4px; border-radius: 3px; padding: 1px 2px; }
+  .conditions li:focus { outline: none; background: var(--accent-soft); }
+
+  .signature { margin-top: 48px; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .signature .line { width: 240px; border-top: 1px solid var(--ink); padding-top: 6px; font-size: 13.5px; font-weight: 600; }
+  .signature .role { font-size: 12px; color: var(--muted); }
+
+  @media print {
+    body { padding: 0; background: #fff; }
+    .toolbar, .no-print { display: none !important; }
+    .sheet { box-shadow: none; max-width: 100%; padding: 6mm 8mm; }
+    :root { --sheet: #ffffff; --ink: #000000; --muted: #444; --line: #ccc; }
+  }
+  @media (max-width: 640px) {
+    .sheet { padding: 32px 22px 28px; }
+    .meta, .meta.two { grid-template-columns: 1fr; }
+  }
+
+  /* Corrección: evita que el texto largo se salga del recuadro al escribir */
+  [contenteditable="true"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .meta, .meta.two, .field, .letras-box, td, th, table, .conditions li {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div>
+    <h1>Vista previa — Cotización</h1>
+    <p>Edita cualquier campo directamente sobre el documento antes de imprimir.</p>
+  </div>
+  <div class="toolbar-actions">
+    <button class="primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="brand">
+    <h2>CERRAJERÍA BARRANQUILLA ELITE SAS</h2>
+    <p class="sub">NIT 901.560.454-0 &nbsp;·&nbsp; Representante legal: Carlos Andrés Medina Ortiz</p>
+    <p class="contact">Carrera 46 #59-39, Barranquilla &nbsp;·&nbsp; Tel. 300 708 1927 &nbsp;·&nbsp; cerrajeriabarranquillaelite@gmail.com &nbsp;·&nbsp; IG @cerrajeriabarranquillaelite</p>
+  </div>
+
+  <div class="rule"></div>
+  <p class="doc-title">COTIZACIÓN</p>
+
+  <div class="meta">
+    <div class="field"><label>No.</label><div class="val" contenteditable="true">001</div></div>
+    <div class="field"><label>Fecha</label><div class="val" contenteditable="true">11 de agosto de 2026</div></div>
+    <div class="field"><label>Válida hasta</label><div class="val" contenteditable="true">25 de agosto de 2026</div></div>
+  </div>
+  <div class="meta two">
+    <div class="field"><label>Cliente</label><div class="val" contenteditable="true">Juan Pérez — Tel. 300 000 0000</div></div>
+    <div class="field"><label>Dirección del servicio</label><div class="val" contenteditable="true">Carrera 50 #72-10, Barranquilla</div></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th class="center" style="width:60px;">Cant.</th>
+        <th class="num" style="width:100px;">Valor unit.</th>
+        <th class="num" style="width:100px;">Subtotal</th>
+        <th class="row-del no-print"></th>
+      </tr>
+    </thead>
+    <tbody id="items">
+      <tr>
+        <td><div class="concepto" contenteditable="true">Cerradura eléctrica para puerta principal (suministro)</div></td>
+        <td class="center"><div class="cant" contenteditable="true">1</div></td>
+        <td class="num"><input class="unit-input" type="text" inputmode="numeric" value="280000" oninput="recalcRow(this)"></td>
+        <td class="num sub-cell">$ 280.000</td>
+        <td class="row-del no-print"><button class="ghost" onclick="delRow(this)" title="Eliminar fila">✕</button></td>
+      </tr>
+      <tr>
+        <td><div class="concepto" contenteditable="true">Instalación y programación</div></td>
+        <td class="center"><div class="cant" contenteditable="true">1</div></td>
+        <td class="num"><input class="unit-input" type="text" inputmode="numeric" value="70000" oninput="recalcRow(this)"></td>
+        <td class="num sub-cell">$ 70.000</td>
+        <td class="row-del no-print"><button class="ghost" onclick="delRow(this)" title="Eliminar fila">✕</button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr class="total-row">
+        <td>TOTAL</td><td></td><td></td>
+        <td class="num" id="total">$ 350.000</td>
+        <td class="no-print"></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="add-row no-print"><button onclick="addRow()">+ Agregar ítem</button></div>
+
+  <div class="conditions">
+    <h3>Condiciones</h3>
+    <ul>
+      <li contenteditable="true">Precio válido según fecha de vigencia indicada arriba.</li>
+      <li contenteditable="true">Se requiere 50% de anticipo para agendar la instalación.</li>
+      <li contenteditable="true">Garantía de instalación: 3 meses.</li>
+    </ul>
+  </div>
+
+  <div class="signature">
+    <div class="line">Carlos Andrés Medina Ortiz</div>
+    <div class="role">CERRAJERÍA BARRANQUILLA ELITE SAS</div>
+  </div>
+</div>
+
+<script>
+  function formatCOP(n) { return "$ " + Math.round(n).toLocaleString("es-CO"); }
+  function num(v) { var n = parseFloat((v || "0").replace(/[^\d.-]/g, "")); return isNaN(n) ? 0 : n; }
+
+  function recalcRow(input) {
+    var tr = input.closest("tr");
+    var cant = num(tr.querySelector(".cant").textContent);
+    var unit = num(input.value);
+    tr.querySelector(".sub-cell").textContent = formatCOP(cant * unit);
+    recalcTotal();
+  }
+  function recalcTotal() {
+    var total = 0;
+    document.querySelectorAll(".sub-cell").forEach(function (c) { total += num(c.textContent); });
+    document.getElementById("total").textContent = formatCOP(total);
+  }
+  function delRow(btn) { var tr = btn.closest("tr"); tr.parentNode.removeChild(tr); recalcTotal(); }
+  function addRow() {
+    var tbody = document.getElementById("items");
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td><div class="concepto" contenteditable="true">Nuevo concepto</div></td>' +
+      '<td class="center"><div class="cant" contenteditable="true">1</div></td>' +
+      '<td class="num"><input class="unit-input" type="text" inputmode="numeric" value="0" oninput="recalcRow(this)"></td>' +
+      '<td class="num sub-cell">$ 0</td>' +
+      '<td class="row-del no-print"><button class="ghost" onclick="delRow(this)" title="Eliminar fila">✕</button></td>';
+    tbody.appendChild(tr);
+    recalcTotal();
+  }
+  document.querySelectorAll(".cant").forEach(function (c) {
+    c.addEventListener("input", function () {
+      var input = c.closest("tr").querySelector(".unit-input");
+      recalcRow(input);
+    });
+  });
+</script>
+</body>
+</html>
